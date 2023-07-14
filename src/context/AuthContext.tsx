@@ -20,12 +20,19 @@ export interface AuthContextModel {
     signIn: (email: string, password: string) => Promise<UserCredential>
     signUp: (email: string, password: string) => Promise<UserCredential>
     logout: () => Promise<void>
+    showModal: () => void
+    hideModal: () => void
+    toggleModal: () => void
+    setUser: any
+    isModalOpen: boolean
 }
 
-export const AuthContext = createContext({})
+export const AuthContext = createContext({} as AuthContextModel)
 
 export const AuthProvider = ({ children }: Props) => {
     const [user, setUser] = useState<User | null>(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    //const [cartCount, setCartCount] = useState(0)
 
     function signUp(email: string, password: string): Promise<UserCredential> {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -39,6 +46,16 @@ export const AuthProvider = ({ children }: Props) => {
         return signOut(auth)
     }
 
+    const showModal = () => {
+        setIsModalOpen(true)
+    }
+    const hideModal = () => {
+        setIsModalOpen(false)
+    }
+    const toggleModal = () => {
+        setIsModalOpen((prev) => !prev)
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
@@ -49,18 +66,22 @@ export const AuthProvider = ({ children }: Props) => {
         }
     }, [])
 
-    const value = {
+    const value: AuthContextModel = {
         signUp,
         signIn,
         logout,
         user,
         setUser,
-        auth
+        auth,
+        showModal,
+        hideModal,
+        toggleModal,
+        isModalOpen
     }
 
     return <AuthContext.Provider value={value}> {children} </AuthContext.Provider>
 }
 
-export default function useUserAuth(): any {
+export default function useUserAuth(): AuthContextModel {
     return useContext(AuthContext)
 }

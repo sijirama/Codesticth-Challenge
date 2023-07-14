@@ -4,7 +4,7 @@ import BackGround from '/bg/bg.jpg'
 import { toast } from 'sonner'
 import { UserRegisterType } from '../Types/User'
 import useUserAuth from '../context/AuthContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { updateProfile } from 'firebase/auth'
 
 const initialState: UserRegisterType = {
@@ -16,8 +16,14 @@ const initialState: UserRegisterType = {
 
 export default function Register() {
     const navigate = useNavigate()
-    const { signUp } = useUserAuth()
+    const { signUp, user } = useUserAuth()
     const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [])
 
     const handleSubmit = async (user: UserRegisterType) => {
         console.log('Submitting...')
@@ -129,7 +135,7 @@ export default function Register() {
 
                                 <p className="font-thin text-sm my-1 text-white">
                                     Already have an account?{' '}
-                                    <Link to="/sigin">
+                                    <Link to="/signin">
                                         <span className="text-myprimary font-semibold">Sign in</span>
                                     </Link>
                                 </p>

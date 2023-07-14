@@ -4,7 +4,7 @@ import BackGround from '/bg/bg.jpg'
 import { toast } from 'sonner'
 import { UserAuthenticationType } from '../Types/User'
 import useUserAuth from '../context/AuthContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const initialState: UserAuthenticationType = {
     email: '',
@@ -13,8 +13,14 @@ const initialState: UserAuthenticationType = {
 
 export default function SignIn() {
     const navigate = useNavigate()
-    const { signIn } = useUserAuth()
+    const { signIn, user } = useUserAuth()
     const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [])
 
     const handleSubmit = async (user: UserAuthenticationType) => {
         console.log('Submitting...')
@@ -93,7 +99,7 @@ export default function SignIn() {
 
                                 <p className="font-thin text-sm my-1 text-white">
                                     Don't have an account?{' '}
-                                    <Link to="/sigup">
+                                    <Link to="/signup">
                                         <span className="text-myprimary font-semibold">Sign Up</span>
                                     </Link>
                                 </p>

@@ -15,9 +15,6 @@ export default function Navbar() {
                 <div className="flex items-center justify-around gap-2">
                     {user ? (
                         <>
-                            <p className="text-black hidden md:block font-rubik font-extrabold text-xl">
-                                Welcome {user.displayName}
-                            </p>
                             <ProfileMenu />
                         </>
                     ) : (
