@@ -66,7 +66,7 @@ export function ProfileMenu() {
                     <Button
                         variant="text"
                         color="blue-gray"
-                        className="flex items-center border-2 border-gray-800 gap-1 rounded-3xl py-2 px-4 text-black bg-white"
+                        className="flex items-center gap-1 rounded-3xl py-2 px-4 text-white bg-myprimary"
                     >
                         <BiUser size={24} />
                         <ChevronDownIcon

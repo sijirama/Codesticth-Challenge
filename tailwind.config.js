@@ -4,7 +4,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                myprimary: '#8E4D2D'
+                myprimary: '#8E4D2D',
+                mysecondary: '#0a0a0a',
+                mytertiary: '#5e5e5e'
             },
             fontFamily: {
                 Public: ['Public sans', 'sans-serif'],

@@ -29,13 +29,9 @@ export function NavAuthSection() {
                 <Button
                     variant="text"
                     color="blue-gray"
-                    className="flex items-center gap-1 rounded-full py-1 px-3 lg:ml-auto "
+                    className="flex items-center gap-1 rounded-lg py-2 px-3 lg:ml-auto bg-myprimary "
                 >
-                    <BiUser size={27} className="" />
-                    <ChevronDownIcon
-                        strokeWidth={2.5}
-                        className={`h-3 w-3 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`}
-                    />
+                    <p className="font-rubik -tracking-wide">Join Us</p>
                 </Button>
             </MenuHandler>
             <MenuList className="p-1 bg-gray-200">
