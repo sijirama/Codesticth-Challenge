@@ -10,7 +10,9 @@ import {
     ShoppingBagIcon
 } from '@heroicons/react/24/outline'
 import { BiUser } from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import useUserAuth from '../context/AuthContext'
+import { toast } from 'sonner'
 
 // profile menu component
 const profileMenuItems = [
@@ -50,13 +52,22 @@ const profileMenuItems = [
 
 export function ProfileMenu() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+    const { logout, setUser } = useUserAuth()
+    const navigate = useNavigate()
 
     const closeMenu = () => {
         setIsMenuOpen(false)
     }
 
     const handleLogOut = async () => {
-        console.log('loggout bitch')
+        try {
+            await logout()
+            setUser(null)
+            toast.success('Successfully logged out')
+            navigate('/signin')
+        } catch (err) {
+            toast.error('Failed to log out')
+        }
     }
 
     return (

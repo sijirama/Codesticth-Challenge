@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }: Props) => {
         signIn,
         logout,
         user,
+        setUser,
         auth
     }
 

@@ -12,7 +12,18 @@ export default function Navbar() {
                 <div>
                     <p className="-tracking-widest font-rubik text-black text-4xl font-semibold">Duvera</p>
                 </div>
-                <div className="flex items-center justify-around">{user ? <ProfileMenu /> : <NavAuthSection />}</div>
+                <div className="flex items-center justify-around gap-2">
+                    {user ? (
+                        <>
+                            <p className="text-black hidden md:block font-rubik font-extrabold text-xl">
+                                Welcome {user.displayName}
+                            </p>
+                            <ProfileMenu />
+                        </>
+                    ) : (
+                        <NavAuthSection />
+                    )}
+                </div>
             </nav>
         </Container>
     )

@@ -9,7 +9,6 @@ export default function Dashboard() {
             <nav className="fixed top-0 w-full bg-transparent">
                 <Navbar />
             </nav>
-            <Marquee />
         </section>
     )
 }
