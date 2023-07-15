@@ -32,7 +32,6 @@ export const AuthContext = createContext({} as AuthContextModel)
 export const AuthProvider = ({ children }: Props) => {
     const [user, setUser] = useState<User | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    //const [cartCount, setCartCount] = useState(0)
 
     function signUp(email: string, password: string): Promise<UserCredential> {
         return createUserWithEmailAndPassword(auth, email, password)

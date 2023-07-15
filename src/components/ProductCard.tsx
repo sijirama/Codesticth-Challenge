@@ -1,5 +1,6 @@
 import { Product } from '../Types/Product'
 import { TextRevise } from '../utils/functions'
+import useProduct from '../context/ProductContext'
 
 interface Props {
     product: Product
@@ -7,6 +8,12 @@ interface Props {
 }
 
 export default function ProductCard({ product, form }: Props) {
+    const { getProduct } = useProduct()
+
+    const handleClick = async () => {
+        await getProduct(product.id)
+    }
+
     return (
         <div
             className={`grid ${
@@ -32,7 +39,10 @@ export default function ProductCard({ product, form }: Props) {
                 </div>
                 <p className=" font-rubik text-sm -tracking-wide font-light">{product.quantity} left</p>
                 <div className=" flex justify-end">
-                    <button className="bg-myprimary text-white px-4 py-1 font-semibold font-rubik rounded-md">
+                    <button
+                        onClick={handleClick}
+                        className="bg-myprimary text-white px-4 py-1 font-semibold font-rubik rounded-md"
+                    >
                         View
                     </button>
                 </div>

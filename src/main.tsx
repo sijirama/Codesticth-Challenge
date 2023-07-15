@@ -7,13 +7,12 @@ import { Toaster } from 'sonner'
 import 'rsuite/dist/rsuite-no-reset.min.css'
 import { ProductProvider } from './context/ProductContext.tsx'
 
+//<React.StrictMode>
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <AuthProvider>
-            <ProductProvider>
-                <Toaster position="bottom-right" />
-                <App />
-            </ProductProvider>
-        </AuthProvider>
-    </React.StrictMode>
+    <AuthProvider>
+        <ProductProvider>
+            <Toaster position="bottom-right" />
+            <App />
+        </ProductProvider>
+    </AuthProvider>
 )
