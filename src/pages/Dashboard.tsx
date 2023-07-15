@@ -1,5 +1,5 @@
 import Hero from '../components/Hero'
-import { Marquee } from '../components/Marquee'
+import HeroPreview from '../components/HeroPreview'
 import Navbar from '../components/Navbar'
 
 export default function Dashboard() {
@@ -9,6 +9,7 @@ export default function Dashboard() {
             <nav className="fixed top-0 w-full bg-transparent">
                 <Navbar />
             </nav>
+            <HeroPreview />
         </section>
     )
 }

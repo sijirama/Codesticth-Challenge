@@ -5,7 +5,7 @@ export default function Hero() {
     return (
         <section
             style={{ backgroundImage: `url(${HeroImage})` }}
-            className="min-h-full w-full text-black bg-cover bg-center bg-fixed flex items-center lg:items-start justify-center  flex-col"
+            className="min-h-full w-full text-white bg-cover bg-center bg-fixed flex items-center lg:items-start justify-center  flex-col"
         >
             <Container>
                 <div className="lg:w-1/2 text-center lg:text-left border-0 border-black ">

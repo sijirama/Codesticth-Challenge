@@ -6,6 +6,7 @@ import { UserRegisterType } from '../Types/User'
 import useUserAuth from '../context/AuthContext'
 import { useEffect, useState } from 'react'
 import { updateProfile } from 'firebase/auth'
+import { createCartForUser } from '../utils/firebaseFunctions'
 
 const initialState: UserRegisterType = {
     name: '',
@@ -40,6 +41,7 @@ export default function Register() {
             await updateProfile(response.user, {
                 displayName: name
             })
+            createCartForUser(response.user.uid)
             toast.success('Welcome to Dureva!')
             navigate('/')
         } catch (error) {
