@@ -9,7 +9,7 @@ export default {
                 mytertiary: '#5e5e5e'
             },
             fontFamily: {
-                Public: ['Public sans', 'sans-serif'],
+                Abril: ['Abril Fatface', 'cursive'],
                 Lexend: ['Lexend', 'sans-serif'],
                 rubik: ['Rubik', 'sans-serif']
             }

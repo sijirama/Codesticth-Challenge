@@ -4,12 +4,16 @@ import './index.css'
 import App from './app.tsx'
 import { AuthProvider } from './context/AuthContext.tsx'
 import { Toaster } from 'sonner'
+import 'rsuite/dist/rsuite-no-reset.min.css'
+import { ProductProvider } from './context/ProductContext.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <AuthProvider>
-            <Toaster position="bottom-right" />
-            <App />
+            <ProductProvider>
+                <Toaster position="bottom-right" />
+                <App />
+            </ProductProvider>
         </AuthProvider>
     </React.StrictMode>
 )

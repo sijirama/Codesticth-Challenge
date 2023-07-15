@@ -1,7 +1,5 @@
 import React from 'react'
 import { Typography, Button, Menu, MenuHandler, MenuList, MenuItem } from '@material-tailwind/react'
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { BiUser } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { PiSignInLight } from 'react-icons/pi'
 import { AiOutlineUserAdd } from 'react-icons/ai'
@@ -35,9 +33,10 @@ export function NavAuthSection() {
                 </Button>
             </MenuHandler>
             <MenuList className="p-1 bg-gray-200">
-                {profileMenuItems.map(({ label, icon, link }, _key) => {
+                {profileMenuItems.map(({ label, icon, link }, key) => {
                     return (
                         <Link
+                            key={key}
                             to={link!}
                             className="hover:no-underline outline-none hover:outline-none active:outline-none focus:outline-none"
                         >
@@ -54,7 +53,6 @@ export function NavAuthSection() {
                                     as="span"
                                     variant="small"
                                     className="font-semibold text-black font-rubik -tracking-wider"
-                                    color={''}
                                 >
                                     {label}
                                 </Typography>

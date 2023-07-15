@@ -37,15 +37,17 @@ export async function updateCartQuantity(userId: string, ProductId: string, quan
 
 // Retrieve the user's cart
 export async function getUserCart(userId: string): Promise<any> {
-    const cartRef = doc(db, 'carts', userId)
-    if (!cartRef) {
+    try {
+        const cartRef = doc(db, 'carts', userId)
+        if (!cartRef) {
+            return null
+        }
+        const cartDoc = await getDoc(cartRef)
+        if (cartDoc.exists()) {
+            return cartDoc.data()
+        }
         return null
-    }
-    const cartDoc = await getDoc(cartRef)
-    if (cartDoc.exists()) {
-        return cartDoc.data()
-    }
-    return null
+    } catch (error) {}
 }
 
 export async function getAllProducts(): Promise<Product[] | any> {

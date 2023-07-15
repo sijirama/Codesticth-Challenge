@@ -8,10 +8,10 @@ export default function HeroPreview() {
     useEffect(() => {
         const getProducts = async () => {
             const products = await getAllProducts()
-            setProducts(products)
+            setProducts(products.slice(0, 6))
         }
         getProducts()
-        console.log(products)
+        //console.log(products)
     }, [])
 
     if (products?.length! < 0 || products == null) {
@@ -19,9 +19,9 @@ export default function HeroPreview() {
     }
 
     return (
-        <section className="w-full py-10 flex items-center justify-center gap-2">
+        <section className="w-full bg-[#ebebf0] py-10 flex items-center  gap-4 flex-wrap justify-center">
             {products!.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.id} form="row" product={product} />
             ))}
         </section>
     )

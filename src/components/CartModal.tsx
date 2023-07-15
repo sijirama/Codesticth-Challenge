@@ -11,11 +11,15 @@ export default function CartModal() {
 
     useEffect(() => {
         const fetchCart = async () => {
-            const cart = await getUserCart(user?.uid!)
-            setCart(cart.items!)
+            try {
+                const cart = await getUserCart(user?.uid!)
+                setCart(cart.items!)
+            } catch (e) {
+                setCart(null)
+            }
         }
         fetchCart()
-        console.log(cart)
+        //console.log(cart)
     }, [])
 
     return (
