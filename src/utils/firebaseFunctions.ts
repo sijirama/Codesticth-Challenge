@@ -15,7 +15,7 @@ export async function addProductToCart(userId: string, product: Product) {
     if (cartDoc.exists()) {
         const cartItems = cartDoc.data()?.items || []
         const upDatedItems = [...cartItems, product]
-        await updateDoc(cartRef, { ...upDatedItems })
+        setDoc(cartRef, { items: upDatedItems }, { merge: true })
     }
 }
 

@@ -17,6 +17,7 @@ export interface ProductContextModel {
     toggleModal: () => void
     isModalOpen: boolean
     //productId: string
+    fetchCart: () => void
     selectedProduct: Product | null
     getProduct: (id: string) => Promise<void>
 }
@@ -39,21 +40,31 @@ export const ProductProvider = ({ children }: Props) => {
     const toggleModal = () => {
         setIsModalOpen((prev) => !prev)
     }
+    const fetchCart = async () => {
+        try {
+            const cart = await getUserCart(user?.uid!)
+            setCart(cart.items!)
+            setCartLength(cart.items.length)
+            console.log('fetcheddddddddddddddddd')
+        } catch (error) {
+            setCart(null)
+            setCartLength(null)
+        }
+    }
 
     useEffect(() => {
-        const fetchCart = async () => {
+        const fetchCartEffect = async () => {
             try {
                 const cart = await getUserCart(user?.uid!)
                 setCart(cart.items!)
-                setCartLength(cart.length)
+                setCartLength(cart.items.length)
             } catch (error) {
                 setCart(null)
-                setCartLength(0)
+                setCartLength(null)
             }
         }
-        fetchCart()
-        //console.log(cartLength)
-        //console.log(cart)
+
+        fetchCartEffect()
     }, [])
 
     const getProduct = async (id: string) => {
@@ -72,7 +83,8 @@ export const ProductProvider = ({ children }: Props) => {
         toggleModal,
         isModalOpen,
         getProduct,
-        selectedProduct
+        selectedProduct,
+        fetchCart
     }
     return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
 }

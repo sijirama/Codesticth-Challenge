@@ -7,6 +7,9 @@ export const TextRevise = (text: string, limit: number): string => {
     }
 }
 
-export function capitalizeFirstLetter(name: string): string {
+export function capitalizeFirstLetter(name: string | null): string | null {
+    if (!name) {
+        return null
+    }
     return name.charAt(0).toUpperCase() + name.slice(1)
 }

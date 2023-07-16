@@ -5,17 +5,27 @@ import Signup from './pages/signup'
 import SignIn from './pages/signin'
 import CartModal from './components/CartModal'
 import ProductModal from './components/ProductModal'
-// import { useEffect } from 'react'
-// import { ProductSampleData } from './data/Products'
-// import { addSampleData } from './utils/firebaseFunctions'
+import { useEffect } from 'react'
+import { ProductSampleData } from './data/Products'
+import { addSampleData } from './utils/firebaseFunctions'
+import useProduct from './context/ProductContext'
 
 export default function App() {
-    // useEffect(() => {
-    //     const addData = async () => {
-    //         await addSampleData(ProductSampleData)
-    //     }
-    //     addData()
-    // }, [])
+    const { fetchCart } = useProduct()
+
+    useEffect(() => {
+        const addData = async () => {
+            await addSampleData(ProductSampleData)
+        }
+        const addToCart = async () => {
+            try {
+                fetchCart()
+            } catch (error) {}
+        }
+
+        //addData()
+        addToCart()
+    }, [])
 
     return (
         <>
