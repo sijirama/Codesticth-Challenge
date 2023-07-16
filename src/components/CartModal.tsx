@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import useUserAuth from '../context/AuthContext'
 import { Product } from '../Types/Product'
 import { getUserCart } from '../utils/firebaseFunctions'
 import { RiShoppingCart2Line } from 'react-icons/ri'
-import useProduct from '../context/ProductContext'
+//import useProduct from '../context/ProductContext'
 
 export default function CartModal() {
     const { isModalOpen, hideModal, user } = useUserAuth()
-    const { cart } = useProduct()
+    //const { cart } = useProduct()
     const [cartt, setCartt] = useState<Product[] | null>(null)
 
     useEffect(() => {
@@ -19,10 +19,12 @@ export default function CartModal() {
                 setCartt(null)
             }
         }
-        fetchCart()
-        console.log(cart)
-        console.log(cartt)
-    }, [])
+
+        if (isModalOpen) {
+            fetchCart()
+            console.log(cartt)
+        }
+    }, [isModalOpen, user?.uid])
 
     return (
         <section
@@ -42,8 +44,14 @@ export default function CartModal() {
                     </p>
                 ) : null}
                 {cartt?.length! > 0 ? (
-                    <div className="min-h-[80%]  flex flex-col md:flex-row flex-wrap overflow-y-scroll ">
-                        <div className=" w-full md:w-1/2 h-1/2 md:h-full ">yoooo</div>
+                    <div className="min-h-[80%]  flex flex-col md:flex-row flex-wrap overflow-y-scroll text-black">
+                        <div className=" w-full md:w-1/2 h-1/2 md:h-full ">
+                            {(cartt as any)?.map((product: Product) => {
+                                <div key={product.id} className='text-black border border-black '>
+                                    <div>{product.name}</div>
+                                </div>
+                            })}
+                        </div>
                         <div className=" w-full md:w-1/2 h-1/2 md:h-full ">yoooo</div>
                     </div>
                 ) : (

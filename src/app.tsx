@@ -17,14 +17,26 @@ export default function App() {
         const addData = async () => {
             await addSampleData(ProductSampleData)
         }
-        const addToCart = async () => {
+
+        const fetchData = async () => {
             try {
                 fetchCart()
-            } catch (error) {}
+                // Other actions to be performed after fetching the cart
+            } catch (error) {
+                // Handle any errors
+            }
         }
 
-        //addData()
-        addToCart()
+        addData()
+        fetchData()
+
+        // Add event listener for unload
+        window.addEventListener('unload', fetchData)
+
+        // Cleanup the event listener when the component is unmounted
+        return () => {
+            window.removeEventListener('unload', fetchData)
+        }
     }, [])
 
     return (
