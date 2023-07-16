@@ -13,3 +13,5 @@ export function capitalizeFirstLetter(name: string | null): string | null {
     }
     return name.charAt(0).toUpperCase() + name.slice(1)
 }
+
+export function helloworld() {}

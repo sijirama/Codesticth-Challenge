@@ -6,11 +6,14 @@ import useProduct from '../context/ProductContext'
 import { useEffect, useState } from 'react'
 import { capitalizeFirstLetter } from '../utils/functions.ts'
 import { addProductToCart } from '../utils/firebaseFunctions.ts'
+import { toast } from 'sonner'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProductModal() {
     const { isModalOpen, hideModal, selectedProduct, fetchCart } = useProduct()
     const [product, setProduct] = useState<Product | null>(null)
     const { user } = useUserAuth()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const submit = () => {
@@ -28,6 +31,12 @@ export default function ProductModal() {
     }
 
     const addToCart = async (e: any) => {
+        if (!user) {
+            hideModal()
+            toast.error('Please sign in to add to cart.')
+            navigate('/signin')
+        }
+
         e.preventDefault()
         try {
             await addProductToCart(user?.uid!, product!)

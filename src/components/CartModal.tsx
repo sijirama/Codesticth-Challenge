@@ -26,6 +26,7 @@ export default function CartModal() {
         }
     }, [isModalOpen, user?.uid])
 
+
     return (
         <section
             onClick={hideModal}
@@ -47,7 +48,7 @@ export default function CartModal() {
                     <div className="min-h-[80%]  flex flex-col md:flex-row flex-wrap overflow-y-scroll text-black">
                         <div className=" w-full md:w-1/2 h-1/2 md:h-full ">
                             {(cartt as any)?.map((product: Product) => {
-                                <div key={product.id} className='text-black border border-black '>
+                                ;<div key={product.id} className="text-black border border-black ">
                                     <div>{product.name}</div>
                                 </div>
                             })}
