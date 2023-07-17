@@ -3,6 +3,7 @@ import { NavAuthSection } from '../minicomponents/NavAuthSection'
 import { ProfileMenu } from '../minicomponents/ProfileDropDown'
 import useUserAuth from '../context/AuthContext'
 import { capitalizeFirstLetter } from '../utils/functions'
+import SearchInput from './SearchInput'
 
 /*
 function capitalizeFirstLetter(name: string): string {
@@ -20,6 +21,7 @@ export default function Navbar() {
                     <p className="-tracking-widest font-Abril text-black text-4xl font-semibold">Duvera</p>
                 </div>
                 <div className="flex items-center justify-around gap-2">
+                    <SearchInput />
                     {user ? (
                         <>
                             <ProfileMenu />

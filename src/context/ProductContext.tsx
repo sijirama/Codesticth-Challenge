@@ -65,7 +65,7 @@ export const ProductProvider = ({ children }: Props) => {
         }
 
         fetchCartEffect()
-    }, [])
+    }, [user])
 
     const getProduct = async (id: string) => {
         try {
