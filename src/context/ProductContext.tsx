@@ -45,7 +45,7 @@ export const ProductProvider = ({ children }: Props) => {
             const cart = await getUserCart(user?.uid!)
             setCart(cart.items!)
             setCartLength(cart.items.length)
-            console.log('fetcheddddddddddddddddd')
+            //console.log('fetcheddddddddddddddddd')
         } catch (error) {
             setCart(null)
             setCartLength(null)

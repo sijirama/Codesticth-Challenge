@@ -2,21 +2,27 @@ import { useState, useEffect } from 'react'
 import useUserAuth from '../context/AuthContext'
 import { Product } from '../Types/Product'
 import { getUserCart } from '../utils/firebaseFunctions'
-import { RiShoppingCart2Line } from 'react-icons/ri'
+import { RiShoppingCart2Line, RiDeleteBin7Fill } from 'react-icons/ri'
+import { calculateTotalPrice } from '../utils/functions'
 //import useProduct from '../context/ProductContext'
+import { removeFromCart } from '../utils/firebaseFunctions'
 
 export default function CartModal() {
     const { isModalOpen, hideModal, user } = useUserAuth()
     //const { cart } = useProduct()
     const [cartt, setCartt] = useState<Product[] | null>(null)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchCart = async () => {
             try {
+                setLoading(true)
                 const cart = await getUserCart(user?.uid!)
                 setCartt(cart.items)
             } catch (e) {
                 setCartt(null)
+            } finally {
+                setLoading(false)
             }
         }
 
@@ -26,6 +32,12 @@ export default function CartModal() {
         }
     }, [isModalOpen, user?.uid])
 
+    const handleRemoveItem = async (prodId: string) => {
+        await removeFromCart(user?.uid!, prodId)
+        const cart = await getUserCart(user?.uid!)
+        setCartt(cart.items)
+        console.log(cartt)
+    }
 
     return (
         <section
@@ -39,21 +51,31 @@ export default function CartModal() {
                     isModalOpen ? null : 'hidden'
                 } w-full h-1/2  lg:w-2/3 lg:h-2/3 bg-[#e0d3b0] lg:rounded-2xl flex flex-col justify-center p-3`}
             >
+                {/*loading && <p>Loading like a pro ...</p>*/}
                 {cartt?.length! > 0 ? (
                     <p className="font-rubik text-2xl lg:text-4xl -tracking-wider text-black font-bold text-center p-3">
                         Cart
                     </p>
                 ) : null}
                 {cartt?.length! > 0 ? (
-                    <div className="min-h-[80%]  flex flex-col md:flex-row flex-wrap overflow-y-scroll text-black">
-                        <div className=" w-full md:w-1/2 h-1/2 md:h-full ">
-                            {(cartt as any)?.map((product: Product) => {
-                                ;<div key={product.id} className="text-black border border-black ">
-                                    <div>{product.name}</div>
+                    <div className="min-h-[80%] flex flex-col md:flex-row flex-wrap overflow-y-scroll text-black">
+                        <div className=" w-full md:w-1/2 h-1/2 md:h-full flex flex-col gap-2">
+                            {(cartt as any)?.map((product: Product) => (
+                                <div key={product.id} className="text-black border border-black ">
+                                    <div className="grid grid-cols-3 p-2">
+                                        <p>{product.name}</p>
+                                        <p>${product.price}</p>
+                                        <div>
+                                            <RiDeleteBin7Fill
+                                                onClick={handleRemoveItem(product.id)}
+                                                className="cursor-pointer "
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
-                            })}
+                            ))}
                         </div>
-                        <div className=" w-full md:w-1/2 h-1/2 md:h-full ">yoooo</div>
+                        <div className=" w-full md:w-1/2 h-1/2 md:h-full ">${calculateTotalPrice(cartt!)}</div>
                     </div>
                 ) : (
                     <div className="min-h-[80%] flex items-center justify-center flex-col gap-2 text-center">

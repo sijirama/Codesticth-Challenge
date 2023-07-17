@@ -1,6 +1,6 @@
 //import { Link } from 'react-router-dom'
 import { HiOutlineShoppingCart } from 'react-icons/hi'
-import { Badge } from 'rsuite'
+//import { Badge } from 'rsuite'
 import useUserAuth from '../context/AuthContext'
 import useProduct from '../context/ProductContext'
 import { useEffect } from 'react'
@@ -11,7 +11,7 @@ export default function Cart() {
 
     useEffect(() => {
         fetchCart()
-        console.log('Fetched cart length --- CartButton')
+        //console.log('Fetched cart length --- CartButton')
     }, [user])
 
     //<Badge style={{ padding: '0.4rem' }} content={cartLength ? cartLength : 0}>

@@ -28,7 +28,7 @@ export default function SearchModal() {
             setData(null)
             fetchProducts()
             inputRef.current?.focus()
-            console.log(products)
+            //console.log(products)
         }
     }, [isModalOpen])
 

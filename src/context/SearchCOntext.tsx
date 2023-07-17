@@ -24,7 +24,7 @@ export const SearchProvider = ({ children }: Props) => {
     }
     const toggleModal = () => {
         setIsModalOpen((prev) => !prev)
-        console.log(isModalOpen)
+        //console.log(isModalOpen)
     }
 
     const value: SearchContextModel = {
