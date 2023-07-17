@@ -8,7 +8,6 @@ import { capitalizeFirstLetter } from '../utils/functions.ts'
 import { addProductToCart } from '../utils/firebaseFunctions.ts'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
-
 export default function ProductModal() {
     const { isModalOpen, hideModal, selectedProduct, fetchCart } = useProduct()
     const [product, setProduct] = useState<Product | null>(null)

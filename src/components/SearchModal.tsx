@@ -4,6 +4,7 @@ import { getAllProducts } from '../utils/firebaseFunctions'
 import useSearch from '../context/SearchCOntext'
 import { FiSearch } from 'react-icons/fi'
 import { MdCancel } from 'react-icons/md'
+import { LiaShoppingBagSolid } from 'react-icons/lia'
 //import useProduct from '../context/ProductContext'
 
 export default function SearchModal() {
@@ -82,7 +83,8 @@ export default function SearchModal() {
                             </div>
                         ))
                     ) : (
-                        <div className="flex items-center justify-center">
+                        <div className="flex items-center justify-center flex-col gap-2">
+                            <LiaShoppingBagSolid size={50} />
                             <p className="font-rubik font-bold text-3xl -tracking-wider">Nothing to See Here.</p>
                         </div>
                     )}
