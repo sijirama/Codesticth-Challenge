@@ -8,7 +8,7 @@ export default function Hero() {
             className="min-h-full w-full text-white bg-cover bg-center bg-fixed flex items-center lg:items-start justify-center  flex-col"
         >
             <Container>
-                <div className="lg:w-1/2 text-center lg:text-left border-0 border-black ">
+                <div className="lg:w-1/2 text-center lg:text-left border-0 border-black px-5 lg:px-0 ">
                     <p className="font-light -tracking-wider">
                         Make Every Room a Statement with Our Trendsetting Furniture
                     </p>
