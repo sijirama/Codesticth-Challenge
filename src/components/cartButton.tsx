@@ -58,7 +58,7 @@ export default function Cart() {
             id="cartButton"
             onClick={toggleModal}
             className={` ${
-                !user ? 'hidden' : isHidden ? 'hidden' : null
+                !user ? 'hidden' : null
             } rounded-full  lg:w-16 lg:h-16 p-2 md:p-3 lg:p-4 fixed bottom-10 lg:bottom-20 left-10  lg:left-20 bg-myprimary flex justify-center items-center shadow-2xl hover:scale-110 transition ease-in-out delay-100 z-40 cursor-pointer`}
         >
             <div className="absolute top-[-0.2rem] right-[-0.4rem] px-2 py-0.5 font-semibold bg-mytertiary rounded-full">

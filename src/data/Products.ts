@@ -63,12 +63,12 @@ export const ProductSampleData: Product[] = [
     },
     {
         id: '7',
-        name: 'Designer Coffee Table',
+        name: 'Photo frames',
         description: 'Unique and stylish coffee table for your living room',
         price: 200000,
         imageUrl:
-            'https://images.unsplash.com/photo-1603572124505-246b36d5a3bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-        category: 'table',
+            'https://images.unsplash.com/photo-1600210491369-e753d80a41f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
+        category: 'Frames',
         quantity: 8
     },
     {

@@ -13,8 +13,8 @@ export default function Footer() {
         >
             <div className="h-full w-5/6 ">
                 <div className="h-2/3 flex flex-col justify-center border-black">
-                    <div className="w-full md:w-1/3 flex flex-col  justify-center border-black h-full text-center md:text-start">
-                        <div className="flex items-center gap-[-0.5rem]">
+                    <div className="w-full md:w-1/3 flex flex-col  justify-center border-black h-full text-center md:text-start ">
+                        <div className="flex items-center justify-center md:justify-start gap-[-0.5rem] border-black">
                             <p className="font-Abril -tracking-widest font-light text-2xl ">Duvera</p>
                             <LuShoppingCart size={25} className="font-semibold" />
                         </div>
