@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import { ProductSampleData } from './data/Products'
 import { addSampleData } from './utils/firebaseFunctions'
 import SearchModal from './components/SearchModal'
+import Catalog from './pages/Catalog'
 
 export default function App() {
     useEffect(() => {
@@ -30,6 +31,7 @@ export default function App() {
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/signin" element={<SignIn />} />
+                    <Route path="/catalog" element={<Catalog />} />
                 </Routes>
             </BrowserRouter>
         </>

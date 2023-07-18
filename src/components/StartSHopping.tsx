@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom'
 import HeroImage from '/bg/couch.jpg'
 
 export default function StartSHopping() {
+    const navigate = useNavigate()
     const handleClick = () => {
-        console.log('clicked')
+        navigate('/catalog')
     }
 
     return (
