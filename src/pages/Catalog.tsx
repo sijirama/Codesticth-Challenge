@@ -4,6 +4,7 @@ import HeroImage from '/bg/gold.jpg'
 import { Product } from '../Types/Product'
 import { getAllProducts } from '../utils/firebaseFunctions'
 import ProductCard from '../components/ProductCard'
+import Footer from '../components/Footer'
 
 export default function Catalog() {
     const [products, setProducts] = useState<Product[] | null>(null)
@@ -11,7 +12,7 @@ export default function Catalog() {
     useEffect(() => {
         const getProducts = async () => {
             const products = await getAllProducts()
-            setProducts(products.slice(0, 6))
+            setProducts(products)
         }
         getProducts()
     }, [])
@@ -24,9 +25,10 @@ export default function Catalog() {
                     <p className="text-4xl md:text-5xl font-rubik font-bold -tracking-wider">Catalog</p>
                 </div>
             </section>
-            <section className="flex items-center gap-4 flex-wrap justify-center py-4">
+            <section className="flex items-center gap-5 flex-wrap justify-center py-4">
                 {products?.map((product) => <ProductCard key={product.id} form="col" product={product} />)}
             </section>
+            <Footer />
         </section>
     )
 }

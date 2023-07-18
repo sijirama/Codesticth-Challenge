@@ -17,7 +17,7 @@ export default function App() {
             await addSampleData(ProductSampleData)
         }
 
-        //addData()
+        // addData()
     }, [])
 
     return (
