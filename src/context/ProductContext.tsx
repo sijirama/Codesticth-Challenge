@@ -19,6 +19,7 @@ export interface ProductContextModel {
     //productId: string
     fetchCart: () => void
     selectedProduct: Product | null
+    setCartLength: any
     getProduct: (id: string) => Promise<void>
 }
 
@@ -84,6 +85,7 @@ export const ProductProvider = ({ children }: Props) => {
         isModalOpen,
         getProduct,
         selectedProduct,
+        setCartLength,
         fetchCart
     }
     return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>

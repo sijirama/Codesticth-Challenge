@@ -18,6 +18,15 @@ export async function addProductToCart(userId: string, product: Product) {
         setDoc(cartRef, { items: upDatedItems }, { merge: true })
     }
 }
+export async function removeFromCart(userId: string, productId: string) {
+    const cartRef = doc(db, 'carts', userId)
+    const cartDoc = await getDoc(cartRef)
+    if (cartDoc.exists()) {
+        const cartItems = cartDoc.data()?.items || []
+        const updatedItems = cartItems.filter((item: Product) => item.id !== productId)
+        setDoc(cartRef, { items: updatedItems }, { merge: true })
+    }
+}
 
 // Update the quantity of a product in the user's cart
 export async function updateCartQuantity(userId: string, ProductId: string, quantity: number) {
@@ -73,15 +82,6 @@ export async function getAProduct(productId: string): Promise<Product | any> {
 }
 
 // Remove a product from the user's cart
-export async function removeFromCart(userId: string, productId: string) {
-    const cartRef = doc(db, 'carts', userId)
-    const cartDoc = await getDoc(cartRef)
-    if (cartDoc.exists()) {
-        const cartItems = cartDoc.data()?.items || []
-        const updatedItems = cartItems.filter((item: Product) => item.id !== productId)
-        await updateDoc(cartRef, { ...updatedItems })
-    }
-}
 
 //add sample firebase products
 export async function addSampleData(products: Product[]) {
