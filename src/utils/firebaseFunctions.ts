@@ -1,4 +1,4 @@
-import { updateDoc, doc, setDoc, getDoc, writeBatch, addDoc, collection, query, getDocs } from 'firebase/firestore'
+import { updateDoc, doc, setDoc, getDoc, writeBatch, collection, query, getDocs } from 'firebase/firestore'
 import { db } from './firebase'
 import { Product } from '../Types/Product'
 

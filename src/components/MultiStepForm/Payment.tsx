@@ -6,7 +6,7 @@ import { MaskedInput } from 'baseui/input'
 import { toast } from 'sonner'
 
 export default function Payment() {
-    const [number, setNumber] = React.useState('')
+    const [number] = React.useState('')
     const { payment, setPayment, next } = useMulti()
     const [value, setValue] = useState('')
     const [expiration, setExpiration] = React.useState('')

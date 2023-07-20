@@ -6,18 +6,18 @@ import SignIn from './pages/signin'
 import CartModal from './components/CartModal'
 import ProductModal from './components/ProductModal'
 import { useEffect } from 'react'
-import { ProductSampleData } from './data/Products'
-import { addSampleData } from './utils/firebaseFunctions'
+// import { ProductSampleData } from './data/Products'
+// import { addSampleData } from './utils/firebaseFunctions'
 import SearchModal from './components/SearchModal'
 import Catalog from './pages/Catalog'
 import MultiStepForm from './pages/MultiForm'
 
 export default function App() {
     useEffect(() => {
-        const addData = async () => {
-            await addSampleData(ProductSampleData)
-        }
-
+        // const addData = async () => {
+        //     await addSampleData(ProductSampleData)
+        // }
+        //
         //Load sampledata from data/products
         //addData()
     }, [])

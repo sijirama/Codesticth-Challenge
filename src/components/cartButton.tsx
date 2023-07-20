@@ -10,6 +10,7 @@ const debounce = (func: () => void, delay: number) => {
     return function () {
         clearTimeout(timeoutId)
         timeoutId = setTimeout(() => {
+            //@ts-ignore
             func.apply(this, arguments)
         }, delay)
     }
@@ -18,6 +19,7 @@ const debounce = (func: () => void, delay: number) => {
 export default function Cart() {
     const { user, toggleModal } = useUserAuth()
     const { cartLength, fetchCart } = useProduct()
+    //@ts-ignore
     const [isHidden, setIsHidden] = useState(true)
     const [grey, setGrey] = useState(false)
 
