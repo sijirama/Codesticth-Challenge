@@ -10,6 +10,7 @@ import { ProductSampleData } from './data/Products'
 import { addSampleData } from './utils/firebaseFunctions'
 import SearchModal from './components/SearchModal'
 import Catalog from './pages/Catalog'
+import MultiStepForm from './pages/MultiForm'
 
 export default function App() {
     useEffect(() => {
@@ -33,6 +34,7 @@ export default function App() {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/catalog" element={<Catalog />} />
+                    <Route path="/checkout" element={<MultiStepForm />} />
                 </Routes>
             </BrowserRouter>
         </>
