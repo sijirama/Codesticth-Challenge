@@ -7,6 +7,11 @@ import 'rsuite/dist/rsuite-no-reset.min.css'
 import { ProductProvider } from './context/ProductContext.tsx'
 import { SearchProvider } from './context/SearchCOntext.tsx'
 import { MultiProvider } from './context/MultiStepFormContext.tsx'
+import { Client as Styletron } from 'styletron-engine-atomic'
+import { Provider as StyletronProvider } from 'styletron-react'
+import { BaseProvider, DarkTheme } from 'baseui'
+
+const engine = new Styletron()
 
 //<React.StrictMode>
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -14,8 +19,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <SearchProvider>
             <ProductProvider>
                 <MultiProvider>
-                    <Toaster position="bottom-right" />
-                    <App />
+                    <StyletronProvider value={engine}>
+                        <BaseProvider theme={DarkTheme}>
+                            <Toaster position="bottom-right" />
+                            <App />
+                        </BaseProvider>
+                    </StyletronProvider>
                 </MultiProvider>
             </ProductProvider>
         </SearchProvider>

@@ -11,12 +11,14 @@ const paymentInitialState = {
     cardNumber: '',
     phoneNumber: '',
     cvv: '',
-    name: ''
+    name: '',
+    expiration: ''
 }
 
 const addressInitialState = {
-    address1: '',
-    address2: '',
+    postalCode: '',
+    street: '',
+    state: '',
     city: ''
 }
 
