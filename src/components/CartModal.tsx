@@ -7,13 +7,13 @@ import { calculateTotalPrice } from '../utils/functions'
 import useProduct from '../context/ProductContext'
 import { removeFromCart } from '../utils/firebaseFunctions'
 import { Button } from '@material-tailwind/react'
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function CartModal() {
-    const { isModalOpen, user } = useUserAuth()
+    const { isModalOpen, user, hideModal } = useUserAuth()
     const { setCartLength } = useProduct()
     const [cartt, setCartt] = useState<Product[] | null>(null)
-    //const nav = useNavigate()
+    const nav = useNavigate()
 
     useEffect(() => {
         const fetchCart = async () => {
@@ -91,7 +91,8 @@ export default function CartModal() {
                                 <Button
                                     className="bg-black text-white font-rubik py-3 px-12 rounded-md"
                                     onClick={() => {
-                                        window.location.pathname = '/checkout'
+                                        hideModal()
+                                        nav('/checkout')
                                     }}
                                 >
                                     Checkout
