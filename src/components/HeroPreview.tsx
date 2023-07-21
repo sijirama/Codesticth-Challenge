@@ -23,7 +23,7 @@ export default function HeroPreview() {
             <div className="justify-start">
                 <p className="text-black -tracking-widest font-bold text-3xl md:text-4xl">Best Selling</p>
             </div>
-            <section className="w-full bg-[#ebebf0] py-10 flex items-center  gap-4 flex-wrap justify-center">
+            <section className="w-full bg-[#ebebf0] py-10 flex items-center  gap-4 flex-wrap justify-center px-4">
                 {products!.map((product) => (
                     <ProductCard key={product.id} form="row" product={product} />
                 ))}

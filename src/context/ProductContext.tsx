@@ -46,7 +46,6 @@ export const ProductProvider = ({ children }: Props) => {
             const cart = await getUserCart(user?.uid!)
             setCart(cart.items!)
             setCartLength(cart.items.length)
-            //console.log('fetcheddddddddddddddddd')
         } catch (error) {
             setCart(null)
             setCartLength(null)
@@ -73,7 +72,7 @@ export const ProductProvider = ({ children }: Props) => {
             const product = await getAProduct(id)
             setSelectedProduct(product)
             setIsModalOpen(true)
-        } catch (error) {}
+        } catch (error) { }
     }
 
     const value: ProductContextModel = {

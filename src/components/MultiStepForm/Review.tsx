@@ -7,10 +7,11 @@ import { Product } from '../../Types/Product.ts'
 import Lottie from 'react-lottie-player'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@material-tailwind/react'
+import { clearCart } from '../../utils/firebaseFunctions.ts'
 
 export default function Review() {
     const { address, setAddress, payment, setPayment } = useMulti()
-    const {} = useProduct()
+    const { fetchCart, setCartLength } = useProduct()
     const [cartt, setCartt] = useState<Product[] | null>(null)
     const { user } = useUserAuth()
     const nav = useNavigate()
@@ -21,6 +22,7 @@ export default function Review() {
             try {
                 const cart = await getUserCart(user?.uid!)
                 setCartt(cart.items)
+                setCartLength(cart.items.length)
             } catch (e) {
                 setCartt(null)
             } finally {
@@ -28,18 +30,21 @@ export default function Review() {
         }
         if (payment && address) {
             fetchCart()
-            console.log(cartt)
         }
-    }, [address])
+    }, [address, payment])
+
+    useEffect(() => {
+        fetchCart()
+    }, [payment])
 
     const handleSubmit = () => {
         setTimeout(() => {
-            //clear cart
             setPayment(null)
             setAddress(null)
-            console.log('Submitted')
+            clearCart(user?.uid!)
+            fetchCart()
             nav('/')
-        }, 3000)
+        }, 4000)
     }
 
     return (
@@ -58,7 +63,7 @@ export default function Review() {
                     }}
                     loop
                     play
-                    //onLoopComplete={handleLoop}
+                //onLoopComplete={handleLoop}
                 ></Lottie>
             )}
             {!modalOpen && (
@@ -88,9 +93,9 @@ export default function Review() {
                     </div>
 
                     <div className=" hidden  col-span-1 h-full md:flex flex-col justify-between items-center gap-3 overflow-scroll">
-                        {cartt?.map((item) => (
+                        {cartt?.map((item, index) => (
                             <div
-                                key={item.id}
+                                key={index}
                                 className="grid grid-cols-4  py-2 items-center gap-2 w-full border-b-1 border-b-white"
                             >
                                 <img

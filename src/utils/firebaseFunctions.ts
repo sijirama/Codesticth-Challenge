@@ -28,6 +28,15 @@ export async function removeFromCart(userId: string, productId: string) {
     }
 }
 
+export async function clearCart(userId: string) {
+    const cartRef = doc(db, 'carts', userId)
+    const cartDoc = await getDoc(cartRef)
+    if (cartDoc.exists()) {
+        const cartItems: any = []
+        setDoc(cartRef, { items: cartItems }, { merge: true })
+    }
+}
+
 // Update the quantity of a product in the user's cart
 export async function updateCartQuantity(userId: string, ProductId: string, quantity: number) {
     const cartRef = doc(db, 'carts', userId)

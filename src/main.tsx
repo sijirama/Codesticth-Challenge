@@ -10,6 +10,7 @@ import { MultiProvider } from './context/MultiStepFormContext.tsx'
 import { Client as Styletron } from 'styletron-engine-atomic'
 import { Provider as StyletronProvider } from 'styletron-react'
 import { BaseProvider, DarkTheme } from 'baseui'
+import { ConfigProvider } from 'antd'
 
 const engine = new Styletron()
 
@@ -22,7 +23,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <StyletronProvider value={engine}>
                         <BaseProvider theme={DarkTheme}>
                             <Toaster position="bottom-right" />
-                            <App />
+                            <ConfigProvider theme={{ token: { colorPrimary: '#292929' } }}>
+                                <App />
+                            </ConfigProvider>
                         </BaseProvider>
                     </StyletronProvider>
                 </MultiProvider>

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 
 const debounce = (func: () => void, delay: number) => {
     let timeoutId: any
-    return function () {
+    return function() {
         clearTimeout(timeoutId)
         timeoutId = setTimeout(() => {
             //@ts-ignore
@@ -29,6 +29,10 @@ export default function Cart() {
     useEffect(() => {
         fetchCart()
     }, [user])
+
+    useEffect(() => {
+        fetchCart()
+    }, [])
 
     useEffect(() => {
         const href = window.location.href
@@ -67,11 +71,9 @@ export default function Cart() {
         <div
             id="cartButton"
             onClick={toggleModal}
-            className={` ${
-                !user ? 'hidden' : null
-            } rounded-full  lg:w-16 lg:h-16 p-2 md:p-3 lg:p-4 fixed bottom-10 lg:bottom-20 left-10  lg:left-20 ${
-                !grey ? 'bg-myprimary' : 'bg-[#292929]'
-            } flex justify-center items-center shadow-2xl hover:scale-110 transition ease-in-out delay-100 z-50 cursor-pointer`}
+            className={` ${!user ? 'hidden' : null
+                } rounded-full  lg:w-16 lg:h-16 p-2 md:p-3 lg:p-4 fixed bottom-10 lg:bottom-20 left-10  lg:left-20 ${!grey ? 'bg-myprimary' : 'bg-[#292929]'
+                } flex justify-center items-center shadow-2xl hover:scale-110 transition ease-in-out delay-100 z-50 cursor-pointer`}
         >
             <div className="absolute top-[-0.2rem] right-[-0.4rem] px-2 py-0.5 font-semibold bg-mytertiary rounded-full">
                 {cartLength ? cartLength : 0}

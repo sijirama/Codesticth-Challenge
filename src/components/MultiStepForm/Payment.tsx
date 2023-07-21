@@ -46,8 +46,8 @@ export default function Payment() {
                     onSubmit={(values) => handleSubmit(values)}
                     validate={(values) => validate(values)}
                 >
-                    {({}) => (
-                        <Form className="w-full h-full flex flex-col items-center justify-evenly border-black p-3">
+                    {({ }) => (
+                        <Form className="w-full h-full gap-3 flex flex-col items-center justify-evenly border-black p-3">
                             <Field
                                 className=" w-full md:w-full font-rubik text-white font-light rounded-md focus:outline-none p-3 bg-[#292929] focus:border-2 border-white"
                                 placeholder="Your Card Name"
@@ -78,7 +78,7 @@ export default function Payment() {
                                 placeholder="Please enter your credit card details"
                                 overrides={{
                                     InputContainer: {
-                                        style: ({}) => ({
+                                        style: ({ }) => ({
                                             //backgroundColor: ' ',
                                             color: 'black'
                                         })
