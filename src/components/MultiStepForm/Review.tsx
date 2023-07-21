@@ -8,6 +8,7 @@ import Lottie from 'react-lottie-player'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@material-tailwind/react'
 import { clearCart } from '../../utils/firebaseFunctions.ts'
+import { toast } from 'sonner'
 
 export default function Review() {
     const { address, setAddress, payment, setPayment } = useMulti()
@@ -30,8 +31,9 @@ export default function Review() {
         }
         if (payment && address) {
             fetchCart()
+        } else {
         }
-    }, [address, payment])
+    }, [address])
 
     const handleSubmit = async () => {
         setModalOpen(true)
@@ -45,9 +47,8 @@ export default function Review() {
             await fetchCart()
             nav('/')
         } catch (error) {
-            console.error('Error processing cart:', error)
+            toast.error('Error processing cart')
         } finally {
-            // Close the modal and navigate to the home page
             setModalOpen(false)
         }
     }
@@ -79,11 +80,11 @@ export default function Review() {
                             <p className="text-lg font-light">{user?.email}</p>
                             <p className="text-lg font-light">{payment?.phoneNumber}</p>
                             <hr />
-                            <p className="text-xl font-bold">{address.street},</p>
+                            <p className="text-xl font-bold">{address?.street},</p>
                             <p className="text-lg font-light">
-                                {address.city}, {address.state}.
+                                {address?.city}, {address?.state}.
                             </p>
-                            <p className="text-base tracking-widest font-light">{address.postalCode}</p>
+                            <p className="text-base tracking-widest font-light">{address?.postalCode}</p>
                         </div>
                         <Button
                             variant="outlined"
@@ -92,7 +93,7 @@ export default function Review() {
                                 handleSubmit()
                             }}
                         >
-                            Submit
+                            Place Order!
                         </Button>
                     </div>
 
