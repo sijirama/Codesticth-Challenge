@@ -33,18 +33,23 @@ export default function Review() {
         }
     }, [address, payment])
 
-    useEffect(() => {
-        fetchCart()
-    }, [payment])
-
-    const handleSubmit = () => {
-        setTimeout(() => {
+    const handleSubmit = async () => {
+        setModalOpen(true)
+        try {
+            // Wait for 3 seconds (you can adjust the time as needed)
+            await new Promise((resolve) => setTimeout(resolve, 3000))
+            // Perform cart clearing and fetching operations
             setPayment(null)
             setAddress(null)
-            clearCart(user?.uid!)
-            fetchCart()
+            await clearCart(user?.uid!)
+            await fetchCart()
             nav('/')
-        }, 4000)
+        } catch (error) {
+            console.error('Error processing cart:', error)
+        } finally {
+            // Close the modal and navigate to the home page
+            setModalOpen(false)
+        }
     }
 
     return (
@@ -63,7 +68,7 @@ export default function Review() {
                     }}
                     loop
                     play
-                //onLoopComplete={handleLoop}
+                    //onLoopComplete={handleLoop}
                 ></Lottie>
             )}
             {!modalOpen && (
@@ -84,7 +89,6 @@ export default function Review() {
                             variant="outlined"
                             className="bg-black text-white font-rubik py-3 px-12 rounded-md w-2/3"
                             onClick={() => {
-                                setModalOpen(true)
                                 handleSubmit()
                             }}
                         >
